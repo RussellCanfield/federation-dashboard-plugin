@@ -2,6 +2,7 @@
 	"name": "@practical/react-debounce",
 	"private": true,
 	"version": "1.0.0",
+	"description": "A practical package for debouncing a method.",
 	"exports": {
 		".": {
 			"import": "./dist/main.js",
