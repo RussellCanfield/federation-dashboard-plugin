@@ -6,7 +6,7 @@ Many debounce examples and packages out there contain dependencies on larger pac
 
 In the example below debounce will execute your callback after a 250ms delay.
 
-```
+```javascript
 import { debounce } from "@practical/react-debounce";
 
 const myMethod = () => {
@@ -18,7 +18,7 @@ const myMethod = () => {
 
 If you need control over canceling the debounce, use the cancel method.
 
-```
+```javascript
 import { cancel } from '@practical/react-debounce';
 
 useEffect(() => {
