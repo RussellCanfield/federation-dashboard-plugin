@@ -1,44 +1,31 @@
-// vite.config.ts
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import dts from "vite-plugin-dts";
+import path from "node:path";
 
-import typescript from "@rollup/plugin-typescript";
-import path from "path";
-import { typescriptPaths } from "rollup-plugin-typescript-paths";
-
+// https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [],
-	resolve: {
-		alias: [
-			{
-				find: "~",
-				replacement: path.resolve(__dirname, "./src"),
-			},
-		],
-	},
-	server: {
-		port: 3000,
-	},
+	plugins: [
+		react(),
+		dts({
+			insertTypesEntry: true,
+			include: ["src/lib/"],
+		}),
+	],
 	build: {
-		manifest: true,
-		minify: true,
-		reportCompressedSize: true,
 		lib: {
-			entry: path.resolve(__dirname, "src/main.ts"),
-			fileName: "main",
-			formats: ["es", "cjs"],
+			entry: path.resolve(__dirname, "./src/lib/index.ts"),
+			name: "ReactDebounce",
+			fileName: "react-debounce",
 		},
 		rollupOptions: {
-			external: [],
-			plugins: [
-				typescriptPaths({
-					preserveExtensions: true,
-				}),
-				typescript({
-					sourceMap: false,
-					declaration: true,
-					outDir: "dist",
-				}),
-			],
+			external: ["react", "react-dom"],
+			output: {
+				globals: {
+					react: "react",
+					"react-dom": "ReactDOM",
+				},
+			},
 		},
 	},
 });
