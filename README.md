@@ -25,15 +25,15 @@ const myMethod = () => {
 If you need control over canceling the debounce, use the cancel method.
 
 ```javascript
-import useDebounce from '@practicaljs/react-debounce';
+import useDebounce from "@practicaljs/react-debounce";
 
 const { cancel } = useDebounce();
 
 useEffect(() => {
-    return () =>s {
-        cancel();
-    }
-})
+	return () => {
+		cancel();
+	};
+});
 ```
 
 ## Component
