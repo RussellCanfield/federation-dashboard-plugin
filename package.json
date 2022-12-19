@@ -1,6 +1,5 @@
 {
 	"name": "@practicaljs/react-debounce",
-	"private": true,
 	"version": "1.0.1",
 	"description": "A practical package for debouncing a method.",
 	"exports": {
@@ -15,6 +14,11 @@
 	"files": [
 		"dist"
 	],
+	"repository": {
+		"url": "https://github.com/RussellCanfield/react-debounce",
+		"type": "url"
+	},
+	"homepage": "https://github.com/RussellCanfield/react-debounce",
 	"keywords": [
 		"react",
 		"debounce"
