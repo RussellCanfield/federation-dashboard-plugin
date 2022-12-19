@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useDebounce from "./useDebounce";
 
 interface DebounceInputProps
@@ -11,7 +11,7 @@ interface DebounceInputProps
 
 const DebouncedInput = React.forwardRef(
 	(props: DebounceInputProps, ref: React.ForwardedRef<HTMLInputElement>) => {
-		const { debounce } = useDebounce();
+		const { debounce, cancel } = useDebounce();
 
 		const { delay, onChange } = props;
 
@@ -22,6 +22,12 @@ const DebouncedInput = React.forwardRef(
 				}
 			}, delay);
 		};
+
+		useEffect(() => {
+			return () => {
+				cancel();
+			};
+		});
 
 		return <input {...props} ref={ref} onChange={handleChange} />;
 	}

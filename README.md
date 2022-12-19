@@ -4,8 +4,6 @@
 
 Many debounce examples and packages out there contain dependencies on larger packages like lodash. While lodash has many features you don't need the extra bloat in your application.
 
-# How
-
 ## Hook
 
 In the example below debounce will execute your callback after a 250ms delay.
