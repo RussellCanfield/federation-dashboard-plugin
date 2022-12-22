@@ -1,13 +1,19 @@
 import DebouncedInput from "./lib/DebouncedInput";
 import "./App.css";
-import React, { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
 
 const App = () => {
-	const ref = React.useRef<HTMLInputElement>(null);
+	const ref = useRef<HTMLInputElement>(null);
 
 	const listen = (event: ChangeEvent<HTMLInputElement>) => {
 		console.log(event.target.value);
 	};
+
+	const test = () => {
+		console.log("hello hello");
+	};
+
+	test();
 
 	return (
 		<>
