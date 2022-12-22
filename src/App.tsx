@@ -9,12 +9,6 @@ const App = () => {
 		console.log(event.target.value);
 	};
 
-	const test = () => {
-		console.log("hello hello");
-	};
-
-	test();
-
 	return (
 		<>
 			<DebouncedInput
