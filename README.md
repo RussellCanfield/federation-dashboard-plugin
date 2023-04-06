@@ -4,6 +4,10 @@ This plugin is a simple webpack plugin for module federation, that allows you to
 
 ## How to use
 
+First, visit the [dashboard site repo](https://github.com/RussellCanfield/federation-dashboard-site), and have the site running locally in docker.
+
+Next, configure the plugin as shown below:
+
 ```javascript
 const federationConfig = {
 	name: "host",
@@ -28,7 +32,7 @@ const federationConfig = {
 
 new ModuleFederationPlugin(federationConfig),
 FederationDashboard({
-	federationDashboardUrl: "http://localhost", //required - this is where your dashboard API is running (TODO: Add link to repo in README)
+	federationDashboardUrl: "http://localhost", //required - this is where your dashboard API is running
 	...federationConfig,
 	host: "host", //optional - if your application is a top level application such as the "shell" concept
 	version: "1.0.0" //optional - if you version your modules, provide the value here (does not need to be semver compliant)
