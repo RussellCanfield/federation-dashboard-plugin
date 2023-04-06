@@ -1,49 +1,36 @@
-# Practical debounce
+# Module Federation Dashboard Plugin
 
-## Why
+This plugin is a simple webpack plugin for module federation, that allows you to visualize federated modules, their relationships with other modules and their shared dependencies.
 
-Many debounce examples and packages out there contain dependencies on larger packages like lodash. While lodash has many features you don't need the extra bloat in your application.
-
-## Hook
-
-In the example below debounce will execute your callback after a 250ms delay.
+## How to use
 
 ```javascript
-import useDebounce from "@practicaljs/react-debounce";
-
-const { debounce } = useDebounce();
-
-const myMethod = () => {
-	debounce(() => {
-		someDelayedMethodHere("test");
-	}, 250);
-};
-```
-
-If you need control over canceling the debounce, use the cancel method.
-
-```javascript
-import useDebounce from "@practicaljs/react-debounce";
-
-const { cancel } = useDebounce();
-
-useEffect(() => {
-	return () => {
-		cancel();
-	};
-});
-```
-
-## Component
-
-In the example below the DebounceInput component will call the onChange method after 250ms.
-
-```javascript
-import DebouncedInput from "@practicaljs/react-debounce";
-
-const listen = (event: ChangeEvent<HTMLInputElement>) => {
-	console.log(event.target.value);
+const federationConfig = {
+	name: "host",
+	filename: "remoteEntry.js",
+	remotes: {
+		remote: "remote@http://localhost:3001/remoteEntry.js",
+		remotesecond: "remotesecond@http://localhost:3002/remoteEntry.js",
+	},
+	exposes: {},
+	shared: {
+		...deps,
+		react: {
+			singleton: true,
+			requiredVersion: deps.react,
+		},
+		"react-dom": {
+			singleton: true,
+			requiredVersion: deps["react-dom"],
+		},
+	},
 };
 
-return <DebouncedInput delay={250} onChange={listen}></DebouncedInput>;
+new ModuleFederationPlugin(federationConfig),
+FederationDashboard({
+	federationDashboardUrl: "http://localhost", //required - this is where your dashboard API is running (TODO: Add link to repo in README)
+	...federationConfig,
+	host: "host", //optional - if your application is a top level application such as the "shell" concept
+	version: "1.0.0" //optional - if you version your modules, provide the value here (does not need to be semver compliant)
+}),
 ```

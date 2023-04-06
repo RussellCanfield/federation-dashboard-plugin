@@ -1,2 +1,3 @@
-export * from "./DebouncedInput";
-export * from "./useDebounce";
+import { FederationDashboard as plugin } from "./FederationDashboard";
+
+export const FederationDashboard = plugin.webpack;

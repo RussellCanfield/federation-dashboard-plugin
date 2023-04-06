@@ -15,15 +15,17 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: path.resolve(__dirname, "./src/lib/index.ts"),
-			name: "ReactDebounce",
-			fileName: "react-debounce",
+			name: "FederationDashboard",
+			fileName: "index",
 		},
 		rollupOptions: {
-			external: ["react", "react-dom"],
+			external: ["unplugin", "fs", "path", "axios"],
 			output: {
 				globals: {
-					react: "react",
-					"react-dom": "ReactDOM",
+					unplugin: "unplugin",
+					fs: "fs",
+					path: "path",
+					axios: "axios",
 				},
 			},
 		},
